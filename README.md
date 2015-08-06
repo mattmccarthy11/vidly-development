@@ -1,1 +1,1 @@
-# vidly-development
+# Vidly Server run files
