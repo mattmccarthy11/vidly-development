@@ -1,0 +1,8 @@
+deploy:
+  provider: codedeploy
+  access_key_id: "AKIAJHVHQI3ZTNOD2F3Q"
+  secret_access_key: "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"
+  bucket: "S3 Bucket"
+  key: latest/MyApp.zip
+  application: MyApp
+  deployment_group: MyDeploymentGroup
