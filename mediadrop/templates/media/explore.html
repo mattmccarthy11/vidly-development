@@ -1,0 +1,87 @@
+<!--!
+This file is a part of MediaDrop (http://www.mediadrop.net),
+Copyright 2009-2015 MediaDrop contributors
+For the exact contribution history, see the git revision log.
+The source code contained in this file is licensed under the GPLv3 or
+(at your option) any later version.
+See LICENSE.txt in the main project directory, for more information.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:i18n="http://genshi.edgewall.org/i18n"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include href="../master.html" />
+
+<head>
+	<title>${h.page_title(default='Explore', media='all')}</title>
+	<meta name="keywords" content="${h.meta_keywords(media='all') or 'MediaDrop'}" />
+	<meta name="description" content="${h.meta_description(media='all') or 'MediaDrop Video CMS'}" />
+</head>
+<body class="">
+
+	<div class="mediadrop-content clearfix">
+	<py:if test="settings['appearance_enable_cooliris']">
+		<div id="cooliris-box" class="feat-box">
+			<div class="feat-top" />
+			<div class="feat-content clearfix">
+				<div class="cooliris-nav">
+					<div class="cooliris-nav-content">
+						<div class="cooliris-featured clickable cooliris-feed featured" data-feed="${h.url_for(controller='sitemaps', action='featured', skip=settings['appearance_enable_featured_items'] and 1 or 0)}" id="cooliris-feed-featured">Featured</div>
+						<div class="cooliris-latest clickable cooliris-feed" data-feed="${h.url_for(controller='sitemaps', action='latest')}" id="cooliris-feed-latest">Latest</div>
+						<div class="cooliris-cats-btn clickable"><span class="cooliris-cats-text">Categories</span> <span class="cooliris-arrow goog-inline-block" /></div>
+						<ul class="cooliris-cats hidden">
+							<li py:for="cat in categories"
+							    py:if="cat.slug != 'featured'"
+							    class="clickable cooliris-feed"
+							    id="cooliris-feed-${cat.slug}"
+							    data-feed="${h.url_for(controller='categories', action='feed', slug=cat.slug)}"
+							    py:content="cat.name" />
+						</ul>
+					</div>
+				</div>
+				<div class="cooliris-wall"></div>
+			</div>
+			<div class="feat-bottom" />
+		</div>
+		<script type="text/javascript">
+			var cooliris = {};
+			var myCooliris = new mcore.Cooliris(680, 323, {
+				backgroundAlpha: 1,
+				cellBorder: 1,
+				feed: '${h.url_for(controller='sitemaps', action='latest', skip=settings['appearance_enable_featured_items'] and 1 or 0)}',
+				intro: 'scrollLeft',
+				numRows: 2,
+				showChrome: false,
+				showDescription: false,
+				showSearch: false,
+				showReflections: false,
+				style: 'light',
+				tilt: 5
+			}, 'cooliris-feed-latest');
+			setTimeout(function(){ myCooliris.decorate(document.getElementById('cooliris-box')); }, 150);
+		</script>
+	</py:if>
+
+
+		<div py:if="latest" id="" class="pge prmy explore">
+			<div class="title">
+				<div class="lbl ta-c">Explore Videos</div>
+				<!--<div class="nav">
+					<a href="#" class="active">Latest</a>
+					<a href="#">Top Rated</a>
+					<a href="#">Most Viewed</a>
+					<a href="#">A to Z</a>
+				</div>-->
+			</div>
+
+
+			<ul class="updates">
+			<li py:replace="media_grid(latest, thumb_size='m', desc_len=135)" />
+			</ul>
+		</div>
+		</div>
+</body>
+</html>

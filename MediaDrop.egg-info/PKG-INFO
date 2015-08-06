@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: MediaDrop
+Version: 0.11.dev0
+Summary: A audio, video and podcast publication platform.
+Home-page: http://mediadrop.net
+Author: MediaDrop contributors.
+Author-email: info@mediadrop.net
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Framework :: TurboGears :: Applications
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: JavaScript
+Classifier: Topic :: Internet :: WWW/HTTP :: Site ManagementTopic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: System Administrators
